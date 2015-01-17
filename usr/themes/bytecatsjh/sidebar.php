@@ -23,7 +23,16 @@
         </section>
     <?php endif; ?>
 
-
+    <section class="widget widget-tag">
+        <h3>热门标签</h3>
+        <div class="tag-cloud">
+            <?php $this->widget('Widget_Metas_Tag_Cloud', array('sort' => 'count', 'ignoreZeroCount' => true, 'desc' => true, 'limit' => 20))->to($tags); ?>
+            <?php while($tags->next()): ?>
+                <a rel="tag" href="<?php $tags->permalink(); ?>"><?php $tags->name(); ?></a>
+            <?php endwhile; ?>
+        </div>
+    </section>
+    
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRecentPosts', $this->options->sidebarBlock)): ?>
     <section class="widget weidget-recent">
 		<h3 class="widget-title"><?php _e('最新文章'); ?></h3>
@@ -48,6 +57,7 @@
             </ul>
         </section>
     <?php endif; ?>
+
 
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowArchive', $this->options->sidebarBlock)): ?>
         <section class="widget">
